@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using DAO.Model;
 using ReversePerspective.Models;
 
@@ -7,7 +8,9 @@ namespace ReversePerspective.TextProcessing
 {
     public static class ProcessingOpus
     {
-        public static Opus Processing(OpusRaw opusRaw)
+        private const string Pattern = @" [A-ZА-Я][\wа-я]*";
+
+        public static Opus RawToOpus(OpusRaw opusRaw)
         {
             var opus = new Opus
             {
@@ -25,11 +28,22 @@ namespace ReversePerspective.TextProcessing
                     Position = ++index,
                     Text = line
                 };
-                
                 opus.Paragraphs.Add(paragraph);
             }
 
             return opus;
+        }
+
+        public static string GetTextFromOpus(Opus opus)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var paragraph in opus.Paragraphs)
+            {
+                sb.AppendLine(paragraph.Text);
+            }
+
+            return sb.ToString();
         }
     }
 }

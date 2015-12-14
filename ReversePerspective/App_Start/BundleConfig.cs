@@ -12,6 +12,9 @@ namespace ReversePerspective
             bundles.Add(new ScriptBundle("~/bundles/app").IncludeDirectory(
                       "~/Scripts/app", "*.js", true));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                      "~/Scripts/jquery-*"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css.css"));
         }

@@ -8,12 +8,15 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-@Html.ActionLink("Home", "Index", "Home") *** @Html.ActionLink("Add Opus", "AddOpus", "Home")
-<div class="container body-content">
-    @RenderBody()
-</div>
-@Scripts.Render("~/bundles/angular")
-@Scripts.Render("~/bundles/app")
-@RenderSection("scripts", required: false)
+    @Html.ActionLink("Home", "Index", "Home") *** @Html.ActionLink("Add Opus", "AddOpus", "Home")
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>
