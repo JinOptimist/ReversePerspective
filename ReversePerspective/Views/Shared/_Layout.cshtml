@@ -1,20 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-
 </head>
 <body>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/app")
-
-    @ren
+@Html.ActionLink("Home", "Index", "Home") *** @Html.ActionLink("Add Opus", "AddOpus", "Home")
+<div class="container body-content">
+    @RenderBody()
+</div>
+@Scripts.Render("~/bundles/angular")
+@Scripts.Render("~/bundles/app")
 @RenderSection("scripts", required: false)
 </body>
 </html>

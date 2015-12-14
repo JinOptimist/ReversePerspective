@@ -12,6 +12,12 @@ namespace ReversePerspective
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "GetOpuses",
+                url: "GetOpuses",
+                defaults: new { controller = "Home", action = "GetOpuses" }
+            );
 
             routes.MapRoute(
                 name: "Default",

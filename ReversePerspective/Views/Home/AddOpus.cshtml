@@ -1,0 +1,19 @@
+﻿@model ReversePerspective.Models.OpusRaw
+@{
+    ViewBag.Title = "AddOpus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddOpus</h2>
+
+@using (Html.BeginForm("AddOpus", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.Guid)
+
+    <p>Name @Html.TextBoxFor(x => x.Name)</p>
+
+    <p>Text @Html.TextAreaFor(x => x.AllText)</p>
+
+    <input type="submit" value="Save" />
+}

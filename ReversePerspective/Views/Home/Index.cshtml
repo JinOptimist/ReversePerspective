@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="homeController">
+    <h2>Обратная перспектива</h2>
+
+    <div>
+        <span ng-repeat="opus in opuses"> <a href="#" ng-click="selectOpus(opus)">{{ opus.Name }}</a> --- </span>
+        
+    </div>
+
+    <hr/>
+
+    <h2>Current</h2>
+    <div>
+        <h3>{{currentOpus.Name}}</h3>
+        <p ng-repeat="paragraph in currentOpus.Paragraphs">
+            {{ paragraph.Text }}
+        </p>
+    </div>
+    
+    <hr/>
+    <hr/>
+    <hr/>
+
+    <h2>All</h2>
+    <div ng-repeat="opus in opuses">
+        <h3>{{opus.Name}}</h3>
+        <p ng-repeat="paragraph in opus.Paragraphs">
+            {{ paragraph.Text }}
+        </p>
+    </div>
+    
+    <hr />
+</div>
