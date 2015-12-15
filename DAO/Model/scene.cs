@@ -6,6 +6,8 @@ namespace DAO.Model
     {
         public virtual string Description { get; set; }
 
+        public virtual Opus Opus { get; set; }
+
         public virtual List<Phrase> Phrases { get; set; }
     }
 }

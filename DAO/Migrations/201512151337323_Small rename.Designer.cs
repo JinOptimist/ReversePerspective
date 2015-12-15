@@ -7,13 +7,13 @@ namespace DAO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Modelsforall : IMigrationMetadata
+    public sealed partial class Smallrename : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Modelsforall));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Smallrename));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512150737514_Models for all"; }
+            get { return "201512151337323_Small rename"; }
         }
         
         string IMigrationMetadata.Source

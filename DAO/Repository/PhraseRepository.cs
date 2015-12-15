@@ -2,8 +2,10 @@
 
 namespace DAO.Repository
 {
-    public class PhraseRepository : OpusRepository<Phrase>
+    public class PhraseRepository : BaseRepository<Phrase>
     {
-        
+        public PhraseRepository(ReversePerspectiveContext context) : base(context)
+        {
+        }
     }
 }

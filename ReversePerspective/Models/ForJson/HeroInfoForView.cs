@@ -8,7 +8,7 @@ namespace ReversePerspective.Models.ForJson
             : base(heroAdditionalInfo)
         {
             Info = heroAdditionalInfo.Info;
-            VisibleAfterThatParagraphId = heroAdditionalInfo.VisibleAfterThatParagraph.Id;
+            VisibleAfterThatParagraphId = heroAdditionalInfo.VisibleAfterThatPhrase.Id;
         }
 
         public string Info { get; set; }

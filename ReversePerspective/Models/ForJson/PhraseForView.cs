@@ -9,7 +9,11 @@ namespace ReversePerspective.Models.ForJson
         {
             Position = phrase.Position;
             Text = phrase.Text;
-            HeroName = phrase.Hero.Name;
+            if (phrase.Hero != null)
+            {
+                HeroName = phrase.Hero.Name;
+                HeroId = phrase.Hero.Id;
+            }
         }
 
         public long Position { get; set; }
@@ -17,5 +21,7 @@ namespace ReversePerspective.Models.ForJson
         public string Text { get; set; }
 
         public string HeroName { get; set; }
+
+        public long HeroId { get; set; }
     }
 }

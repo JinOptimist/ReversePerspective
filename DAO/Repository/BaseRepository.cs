@@ -1,25 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Xml.Linq;
 using DAO.Model;
 
 namespace DAO.Repository
 {
-    public class OpusRepository<T> where T : BaseModel
+    public class BaseRepository<T> where T : BaseModel
     {
-        internal readonly ReversePerspectiveContext _db = new ReversePerspectiveContext();
+        internal readonly ReversePerspectiveContext Db;
+        public BaseRepository(ReversePerspectiveContext context)
+        {
+            Db = context;
+        }
 
         public T Get(long id)
         {
-            IQueryable<T> query = _db.Set<T>();
+            IQueryable<T> query = Db.Set<T>();
             return query.SingleOrDefault(x => x.Id == id);
         }
 
         public List<T> GetAll()
         {
-            IQueryable<T> query = _db.Set<T>();
+            IQueryable<T> query = Db.Set<T>();
             return query.ToList();
         }
 
@@ -27,26 +29,27 @@ namespace DAO.Repository
         {
             if (entity.Id > 0)
             {
-                _db.Set<T>().Attach(entity);
-                _db.Entry(entity).State = EntityState.Modified;
-                _db.SaveChanges();
+                Db.Set<T>().Attach(entity);
+                Db.Entry(entity).State = EntityState.Modified;
+                Db.SaveChanges();
                 return;
             }
 
-            _db.Set<T>().Add(entity);
-            _db.SaveChanges();
+            Db.Set<T>().Add(entity);
+            Db.SaveChanges();
         }
 
         public void Remove(T entity)
         {
-            _db.Set<T>().Remove(entity);
-            _db.SaveChanges();
+            Db.Set<T>().Remove(entity);
+            Db.SaveChanges();
         }
 
         public void Remove(long id)
         {
-            _db.Set<T>().Remove(Get(id));
-            _db.SaveChanges();
+            var entity = Db.Set<T>().SingleOrDefault(x => x.Id == id);
+            Db.Set<T>().Remove(entity);
+            Db.SaveChanges();
         }
     }
 }

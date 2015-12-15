@@ -5,7 +5,7 @@ using System.Text;
 using DAO.Model;
 using ReversePerspective.Models;
 
-namespace ReversePerspective.TextProcessing
+namespace ReversePerspective.Helper
 {
     public static class ProcessingOpus
     {
@@ -30,24 +30,35 @@ namespace ReversePerspective.TextProcessing
             var lines = opusRaw.AllText.Split(new[] { Environment.NewLine, "\n" }, StringSplitOptions.None);
             foreach (var line in lines)
             {
+                string heroName;
+                string text;
+                Hero hero = null;
+
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue;
+                }
+
                 var textPosition = line.IndexOf(":", StringComparison.Ordinal);
                 if (textPosition < 0)
                 {
-                    scene.Description = line;
-                    continue;
+                    text = line;
                 }
-                var heroName = line.Substring(0, textPosition);
-                var text = line.Substring(textPosition + 1);
-
-                var hero = opus.Heroes.SingleOrDefault(x => x.Name == heroName);
-                if (hero == null)
+                else
                 {
-                    hero = new Hero
+                    heroName = line.Substring(0, textPosition);
+                    hero = opus.Heroes.SingleOrDefault(x => x.Name == heroName);
+                    if (hero == null)
                     {
-                        Scene = scene,
-                        Name = heroName
-                    };
-                    opus.Heroes.Add(hero);
+                        hero = new Hero
+                        {
+                            Scene = scene,
+                            Name = heroName
+                        };
+                        opus.Heroes.Add(hero);
+                    }
+
+                    text = line.Substring(textPosition + 1);
                 }
 
                 var phrase = new Phrase

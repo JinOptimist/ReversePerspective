@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAO</RootNamespace>
     <AssemblyName>DAO</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -34,11 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,13 +55,13 @@
     <Compile Include="Migrations\201512141010430_Init project.Designer.cs">
       <DependentUpon>201512141010430_Init project.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512150737514_Models for all.cs" />
-    <Compile Include="Migrations\201512150737514_Models for all.Designer.cs">
-      <DependentUpon>201512150737514_Models for all.cs</DependentUpon>
+    <Compile Include="Migrations\201512151105576_AlphaOne.cs" />
+    <Compile Include="Migrations\201512151105576_AlphaOne.Designer.cs">
+      <DependentUpon>201512151105576_AlphaOne.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs" />
-    <Compile Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.Designer.cs">
-      <DependentUpon>201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs</DependentUpon>
+    <Compile Include="Migrations\201512151337323_Small rename.cs" />
+    <Compile Include="Migrations\201512151337323_Small rename.Designer.cs">
+      <DependentUpon>201512151337323_Small rename.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -87,11 +87,11 @@
     <EmbeddedResource Include="Migrations\201512141010430_Init project.resx">
       <DependentUpon>201512141010430_Init project.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512150737514_Models for all.resx">
-      <DependentUpon>201512150737514_Models for all.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512151105576_AlphaOne.resx">
+      <DependentUpon>201512151105576_AlphaOne.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.resx">
-      <DependentUpon>201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512151337323_Small rename.resx">
+      <DependentUpon>201512151337323_Small rename.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

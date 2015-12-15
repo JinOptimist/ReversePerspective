@@ -2,8 +2,10 @@
 
 namespace DAO.Repository
 {
-    public class SceneRepository : OpusRepository<Scene>
+    public class SceneRepository : BaseRepository<Scene>
     {
-        
+        public SceneRepository(ReversePerspectiveContext context) : base(context)
+        {
+        }
     }
 }

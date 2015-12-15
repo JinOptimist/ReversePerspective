@@ -9,5 +9,7 @@ namespace DAO.Model
         public virtual List<HeroAdditionalInfo> HeroInfo { get; set; }
 
         public virtual Scene Scene { get; set; }
+
+        public virtual Opus Opus { get; set; }
     }
 }

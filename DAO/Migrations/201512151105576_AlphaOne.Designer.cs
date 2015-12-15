@@ -7,13 +7,13 @@ namespace DAO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RenameHeroInfoforHeroAdditionalInfo : IMigrationMetadata
+    public sealed partial class AlphaOne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RenameHeroInfoforHeroAdditionalInfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AlphaOne));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512150837052_Rename HeroInfo for HeroAdditionalInfo"; }
+            get { return "201512151105576_AlphaOne"; }
         }
         
         string IMigrationMetadata.Source

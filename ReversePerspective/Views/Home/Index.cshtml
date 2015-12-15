@@ -1,4 +1,5 @@
-﻿@{
+﻿@using DAO.Model
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,11 +7,9 @@
     <h2>Обратная перспектива</h2>
 
     <div>
-        <span ng-repeat="opus in opuses"> <a href="#" ng-click="selectOpus(opus)">{{ opus.Name }}</a> --- </span>
-    </div>
-
-    <div>
-        
+        <div ng-repeat="opus in opuses">
+            <a href="#" ng-click="selectOpus(opus)">{{ opus.Name }}</a> --- <a href="#" ng-click="deleteOpus(opus.Id)">DELETE</a>
+        </div>
     </div>
 
     <hr />
@@ -19,12 +18,27 @@
     <div>
         <h3>{{currentOpus.Name}}</h3>
         <div ng-repeat="scene in currentOpus.Scenes">
-            <p ng-repeat="phrases in scene.Phrases">
-                {{ phrases.HeroName }}: {{ phrases.Text }}
+            <p class="block" id="phrase{{phrases.Id}}" ng-repeat="phrases in scene.Phrases">
+                <span ng-show="phrases.HeroName" class="name" ng-click="selectHeroInfo(phrases.HeroId, phrases.Id, phrases.HeroName)">{{ phrases.HeroName }}: </span><span>{{ phrases.Text }}</span>
             </p>
         </div>
     </div>
 
+
+
+
+    <div ng-show="heroInfo" id="heroInfo" ng-style="{top:heroInfoBlockTop}">
+        <a href="#" ng-click="closeHeroInfo()" style="float: right;">Close</a>
+        <p>Герой: {{heroInfo.heroName}}</p>
+        
+        
+        <input type="text" ng-model="heroInfo.newInfo" style="width: 400px;" />
+        <input type="submit" value="Добавить" ng-click="saveHeroInfo()" />
+        <p>{{ heroInfo.newInfo }}</p>
+        <p ng-repeat="info in heroInfo">
+            {{info.Info}}
+        </p>
+    </div>
 
 
     @*<hr/>

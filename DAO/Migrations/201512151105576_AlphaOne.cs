@@ -3,69 +3,68 @@ namespace DAO.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Modelsforall : DbMigration
+    public partial class AlphaOne : DbMigration
     {
         public override void Up()
         {
             DropForeignKey("dbo.Paragraphs", "Opus_Id", "dbo.Opus");
             DropIndex("dbo.Paragraphs", new[] { "Opus_Id" });
             CreateTable(
-                "dbo.Heroes",
+                "dbo.Hero",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Name = c.String(),
+                        Opus_Id = c.Long(nullable: false),
                         Scene_Id = c.Long(),
-                        Opus_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Scenes", t => t.Scene_Id)
-                .ForeignKey("dbo.Opus", t => t.Opus_Id)
-                .Index(t => t.Scene_Id)
-                .Index(t => t.Opus_Id);
+                .ForeignKey("dbo.Opus", t => t.Opus_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Scene", t => t.Scene_Id)
+                .Index(t => t.Opus_Id)
+                .Index(t => t.Scene_Id);
             
             CreateTable(
-                "dbo.HeroInfoes",
+                "dbo.HeroAdditionalInfo",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(),
                         Info = c.String(),
-                        Hero_Id = c.Long(),
                         VisibleAfterThatParagraph_Id = c.Long(),
+                        Hero_Id = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Heroes", t => t.Hero_Id)
-                .ForeignKey("dbo.Phrases", t => t.VisibleAfterThatParagraph_Id)
-                .Index(t => t.Hero_Id)
-                .Index(t => t.VisibleAfterThatParagraph_Id);
+                .ForeignKey("dbo.Phrase", t => t.VisibleAfterThatParagraph_Id)
+                .ForeignKey("dbo.Hero", t => t.Hero_Id, cascadeDelete: true)
+                .Index(t => t.VisibleAfterThatParagraph_Id)
+                .Index(t => t.Hero_Id);
             
             CreateTable(
-                "dbo.Phrases",
+                "dbo.Phrase",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Position = c.Long(nullable: false),
                         Text = c.String(),
                         Hero_Id = c.Long(),
-                        Scene_Id = c.Long(),
+                        Scene_Id = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Heroes", t => t.Hero_Id)
-                .ForeignKey("dbo.Scenes", t => t.Scene_Id)
+                .ForeignKey("dbo.Hero", t => t.Hero_Id)
+                .ForeignKey("dbo.Scene", t => t.Scene_Id, cascadeDelete: true)
                 .Index(t => t.Hero_Id)
                 .Index(t => t.Scene_Id);
             
             CreateTable(
-                "dbo.Scenes",
+                "dbo.Scene",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Description = c.String(),
-                        Opus_Id = c.Long(),
+                        Opus_Id = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Opus", t => t.Opus_Id)
+                .ForeignKey("dbo.Opus", t => t.Opus_Id, cascadeDelete: true)
                 .Index(t => t.Opus_Id);
             
             DropTable("dbo.Paragraphs");
@@ -85,24 +84,24 @@ namespace DAO.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
-            DropForeignKey("dbo.Scenes", "Opus_Id", "dbo.Opus");
-            DropForeignKey("dbo.Heroes", "Opus_Id", "dbo.Opus");
-            DropForeignKey("dbo.Heroes", "Scene_Id", "dbo.Scenes");
-            DropForeignKey("dbo.HeroInfoes", "VisibleAfterThatParagraph_Id", "dbo.Phrases");
-            DropForeignKey("dbo.Phrases", "Scene_Id", "dbo.Scenes");
-            DropForeignKey("dbo.Phrases", "Hero_Id", "dbo.Heroes");
-            DropForeignKey("dbo.HeroInfoes", "Hero_Id", "dbo.Heroes");
-            DropIndex("dbo.Scenes", new[] { "Opus_Id" });
-            DropIndex("dbo.Phrases", new[] { "Scene_Id" });
-            DropIndex("dbo.Phrases", new[] { "Hero_Id" });
-            DropIndex("dbo.HeroInfoes", new[] { "VisibleAfterThatParagraph_Id" });
-            DropIndex("dbo.HeroInfoes", new[] { "Hero_Id" });
-            DropIndex("dbo.Heroes", new[] { "Opus_Id" });
-            DropIndex("dbo.Heroes", new[] { "Scene_Id" });
-            DropTable("dbo.Scenes");
-            DropTable("dbo.Phrases");
-            DropTable("dbo.HeroInfoes");
-            DropTable("dbo.Heroes");
+            DropForeignKey("dbo.Hero", "Scene_Id", "dbo.Scene");
+            DropForeignKey("dbo.HeroAdditionalInfo", "Hero_Id", "dbo.Hero");
+            DropForeignKey("dbo.HeroAdditionalInfo", "VisibleAfterThatParagraph_Id", "dbo.Phrase");
+            DropForeignKey("dbo.Phrase", "Scene_Id", "dbo.Scene");
+            DropForeignKey("dbo.Scene", "Opus_Id", "dbo.Opus");
+            DropForeignKey("dbo.Hero", "Opus_Id", "dbo.Opus");
+            DropForeignKey("dbo.Phrase", "Hero_Id", "dbo.Hero");
+            DropIndex("dbo.Scene", new[] { "Opus_Id" });
+            DropIndex("dbo.Phrase", new[] { "Scene_Id" });
+            DropIndex("dbo.Phrase", new[] { "Hero_Id" });
+            DropIndex("dbo.HeroAdditionalInfo", new[] { "Hero_Id" });
+            DropIndex("dbo.HeroAdditionalInfo", new[] { "VisibleAfterThatParagraph_Id" });
+            DropIndex("dbo.Hero", new[] { "Scene_Id" });
+            DropIndex("dbo.Hero", new[] { "Opus_Id" });
+            DropTable("dbo.Scene");
+            DropTable("dbo.Phrase");
+            DropTable("dbo.HeroAdditionalInfo");
+            DropTable("dbo.Hero");
             CreateIndex("dbo.Paragraphs", "Opus_Id");
             AddForeignKey("dbo.Paragraphs", "Opus_Id", "dbo.Opus", "Id");
         }

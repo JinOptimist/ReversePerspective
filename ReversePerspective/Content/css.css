@@ -1,2 +1,18 @@
 ﻿body {
 }
+
+
+.name {
+    color: #008080;
+}
+
+.block {
+    border: 1px solid black;
+}
+
+#heroInfo {
+    position: absolute;
+    background-color: #DDD;
+    width: 500px;
+    padding: 10px;
+}
