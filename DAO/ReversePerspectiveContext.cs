@@ -14,6 +14,12 @@ namespace DAO
 
         public DbSet<Opus> Opus { get; set; }
 
-        public DbSet<Paragraph> Paragraph { get; set; }
+        public DbSet<Scene> Scene { get; set; }
+
+        public DbSet<Phrase> Phrase { get; set; }
+
+        public DbSet<Hero> Hero { get; set; }
+
+        public DbSet<HeroAdditionalInfo> HeroAdditionalInfo { get; set; }
     }
 }

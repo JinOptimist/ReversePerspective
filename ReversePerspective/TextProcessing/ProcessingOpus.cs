@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DAO.Model;
 using ReversePerspective.Models;
@@ -15,20 +16,48 @@ namespace ReversePerspective.TextProcessing
             var opus = new Opus
             {
                 Name = opusRaw.Name,
-                Paragraphs = new List<Paragraph>()
+                Scenes = new List<Scene>()
             };
+
+            var scene = new Scene
+            {
+                Phrases = new List<Phrase>()
+            };
+            opus.Scenes.Add(scene);
+            opus.Heroes = new List<Hero>();
 
             var index = 0;
             var lines = opusRaw.AllText.Split(new[] { Environment.NewLine, "\n" }, StringSplitOptions.None);
             foreach (var line in lines)
             {
-                var paragraph = new Paragraph
+                var textPosition = line.IndexOf(":", StringComparison.Ordinal);
+                if (textPosition < 0)
                 {
-                    Guid = new Guid(),
+                    scene.Description = line;
+                    continue;
+                }
+                var heroName = line.Substring(0, textPosition);
+                var text = line.Substring(textPosition + 1);
+
+                var hero = opus.Heroes.SingleOrDefault(x => x.Name == heroName);
+                if (hero == null)
+                {
+                    hero = new Hero
+                    {
+                        Scene = scene,
+                        Name = heroName
+                    };
+                    opus.Heroes.Add(hero);
+                }
+
+                var phrase = new Phrase
+                {
                     Position = ++index,
-                    Text = line
+                    Text = text,
+                    Scene = scene,
+                    Hero = hero
                 };
-                opus.Paragraphs.Add(paragraph);
+                scene.Phrases.Add(phrase);
             }
 
             return opus;
@@ -38,9 +67,12 @@ namespace ReversePerspective.TextProcessing
         {
             var sb = new StringBuilder();
 
-            foreach (var paragraph in opus.Paragraphs)
+            foreach (var scene in opus.Scenes)
             {
-                sb.AppendLine(paragraph.Text);
+                foreach (var phrase in scene.Phrases)
+                {
+                    sb.AppendLine(phrase.Text);
+                }
             }
 
             return sb.ToString();

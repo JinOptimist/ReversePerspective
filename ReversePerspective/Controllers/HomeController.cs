@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using DAO.Model;
 using DAO.Repository;
 using ReversePerspective.Models;
+using ReversePerspective.Models.ForJson;
 using ReversePerspective.TextProcessing;
 
 namespace ReversePerspective.Controllers
@@ -13,7 +11,7 @@ namespace ReversePerspective.Controllers
     public class HomeController : Controller
     {
         private readonly OpusRepository _opusRepository;
-        
+
         public HomeController()
         {
             _opusRepository = new OpusRepository();
@@ -44,7 +42,7 @@ namespace ReversePerspective.Controllers
         public ActionResult AddOpus(OpusRaw opusRaw)
         {
             var opus = ProcessingOpus.RawToOpus(opusRaw);
-            
+
             _opusRepository.Save(opus);
 
             return RedirectToAction("Index");
@@ -53,12 +51,16 @@ namespace ReversePerspective.Controllers
         public JsonResult GetOpus(long id)
         {
             var opus = _opusRepository.Get(id);
-            return Json(opus, JsonRequestBehavior.AllowGet);
+            var result = new OpusForView(opus);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetOpuses()
         {
-            var result = _opusRepository.GetAll();
+            var opuses = _opusRepository.GetAll();
+
+            var result = opuses.Select(opus => new OpusForView(opus)).ToList();
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

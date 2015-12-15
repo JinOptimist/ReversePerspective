@@ -55,12 +55,26 @@
     <Compile Include="Migrations\201512141010430_Init project.Designer.cs">
       <DependentUpon>201512141010430_Init project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512150737514_Models for all.cs" />
+    <Compile Include="Migrations\201512150737514_Models for all.Designer.cs">
+      <DependentUpon>201512150737514_Models for all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs" />
+    <Compile Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.Designer.cs">
+      <DependentUpon>201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\HeroAdditionalInfo.cs" />
+    <Compile Include="Model\Hero.cs" />
     <Compile Include="Model\Opus.cs" />
-    <Compile Include="Model\Paragraph.cs" />
+    <Compile Include="Model\Phrase.cs" />
+    <Compile Include="Model\Scene.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\ParagraphRepository.cs" />
+    <Compile Include="Repository\HeroInfoRepository.cs" />
+    <Compile Include="Repository\HeroRepository.cs" />
+    <Compile Include="Repository\SceneRepository.cs" />
+    <Compile Include="Repository\PhraseRepository.cs" />
     <Compile Include="Repository\OpusRepository.cs" />
     <Compile Include="ReversePerspectiveContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512141010430_Init project.resx">
       <DependentUpon>201512141010430_Init project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512150737514_Models for all.resx">
+      <DependentUpon>201512150737514_Models for all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512150837052_Rename HeroInfo for HeroAdditionalInfo.resx">
+      <DependentUpon>201512150837052_Rename HeroInfo for HeroAdditionalInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

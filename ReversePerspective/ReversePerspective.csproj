@@ -141,7 +141,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\JsonFactory.cs" />
+    <Compile Include="Models\ForJson\BaseModelForView.cs" />
+    <Compile Include="Models\ForJson\HeroForView.cs" />
+    <Compile Include="Models\ForJson\HeroInfoForView.cs" />
+    <Compile Include="Models\ForJson\OpusForView.cs" />
     <Compile Include="Models\OpusRaw.cs" />
+    <Compile Include="Models\ForJson\PhraseForView.cs" />
+    <Compile Include="Models\ForJson\SceneForView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextProcessing\ProcessingOpus.cs" />
   </ItemGroup>

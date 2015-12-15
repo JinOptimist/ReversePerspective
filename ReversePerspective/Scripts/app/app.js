@@ -7,6 +7,7 @@ angular.module("app", [])
         $log.log("Application started!");
     }])
     .controller("homeController", function ($scope, $http, $location, $timeout) {
+        //$scope.currentOpus = null;
         $scope.currentOpus = null;
         $scope.opuses = [];
 

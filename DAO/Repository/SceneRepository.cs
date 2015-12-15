@@ -2,7 +2,7 @@
 
 namespace DAO.Repository
 {
-    public class OpusRepository : OpusRepository<Opus>
+    public class SceneRepository : OpusRepository<Scene>
     {
         
     }

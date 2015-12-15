@@ -2,7 +2,7 @@
 
 namespace DAO.Repository
 {
-    public class ParagraphRepository : OpusRepository<Paragraph>
+    public class PhraseRepository : OpusRepository<Phrase>
     {
         
     }

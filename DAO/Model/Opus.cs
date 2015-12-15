@@ -6,6 +6,8 @@ namespace DAO.Model
     {
         public virtual string Name { get; set; }
 
-        public virtual List<Paragraph> Paragraphs { get; set; }
+        public virtual List<Scene> Scenes { get; set; }
+
+        public virtual List<Hero> Heroes { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace DAO.Repository
 {
     public class OpusRepository<T> where T : BaseModel
     {
-        private readonly ReversePerspectiveContext _db = new ReversePerspectiveContext();
+        internal readonly ReversePerspectiveContext _db = new ReversePerspectiveContext();
 
         public T Get(long id)
         {

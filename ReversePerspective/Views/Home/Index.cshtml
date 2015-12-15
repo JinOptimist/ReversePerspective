@@ -7,30 +7,37 @@
 
     <div>
         <span ng-repeat="opus in opuses"> <a href="#" ng-click="selectOpus(opus)">{{ opus.Name }}</a> --- </span>
+    </div>
+
+    <div>
         
     </div>
 
-    <hr/>
+    <hr />
 
     <h2>Current</h2>
     <div>
         <h3>{{currentOpus.Name}}</h3>
-        <p ng-repeat="paragraph in currentOpus.Paragraphs">
-            {{ paragraph.Text }}
-        </p>
+        <div ng-repeat="scene in currentOpus.Scenes">
+            <p ng-repeat="phrases in scene.Phrases">
+                {{ phrases.HeroName }}: {{ phrases.Text }}
+            </p>
+        </div>
     </div>
-    
-    <hr/>
-    <hr/>
-    <hr/>
 
-    <h2>All</h2>
-    <div ng-repeat="opus in opuses">
-        <h3>{{opus.Name}}</h3>
-        <p ng-repeat="paragraph in opus.Paragraphs">
-            {{ paragraph.Text }}
-        </p>
-    </div>
-    
-    <hr />
+
+
+    @*<hr/>
+        <hr/>
+        <hr/>
+        <h2>All</h2>
+        <div ng-repeat="opus in opuses">
+            <h3>{{opus.Name}}</h3>
+            <div ng-repeat="scene in opus.Scenes">
+                <p ng-repeat="phrases in scene.Phrases">
+                    {{ phrases.HeroName }}: {{ phrases.Text }}
+                </p>
+            </div>
+        </div>
+        <hr />*@
 </div>
