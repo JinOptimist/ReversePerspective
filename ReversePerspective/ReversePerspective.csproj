@@ -153,6 +153,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\css.css" />
+    <Content Include="Content\img\del.jpg" />
+    <Content Include="Content\img\wait.gif" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\findHero.js" />

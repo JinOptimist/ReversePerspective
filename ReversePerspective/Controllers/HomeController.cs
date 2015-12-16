@@ -14,7 +14,7 @@ namespace ReversePerspective.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BaseRepository _baseRepository;
+        private readonly OpusRepository _opusRepository;
         private readonly HeroRepository _heroRepository;
         private readonly HeroInfoRepository _heroInfoRepository;
         private readonly PhraseRepository _phraseRepository;
@@ -22,7 +22,7 @@ namespace ReversePerspective.Controllers
         public HomeController()
         {
             var reversePerspectiveContext = new ReversePerspectiveContext();
-            _baseRepository = new BaseRepository(reversePerspectiveContext);
+            _opusRepository = new OpusRepository(reversePerspectiveContext);
             _heroInfoRepository = new HeroInfoRepository(reversePerspectiveContext);
             _heroRepository = new HeroRepository(reversePerspectiveContext);
             _phraseRepository = new PhraseRepository(reversePerspectiveContext);
@@ -33,10 +33,16 @@ namespace ReversePerspective.Controllers
             return View();
         }
 
-        public ActionResult DeleteOpus(long opusId)
+        public JsonResult DeleteOpus(long opusId)
         {
-            _baseRepository.Remove(opusId);
-            return RedirectToAction("Index");
+            _opusRepository.Remove(opusId);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteHeroInfo(long infoId)
+        {
+            _heroInfoRepository.Remove(infoId);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AddOpus()
@@ -60,7 +66,7 @@ namespace ReversePerspective.Controllers
         {
             var opus = ProcessingOpus.RawToOpus(opusRaw);
 
-            _baseRepository.Save(opus);
+            _opusRepository.Save(opus);
 
             return RedirectToAction("Index");
         }
@@ -84,14 +90,14 @@ namespace ReversePerspective.Controllers
 
         public JsonResult GetOpus(long id)
         {
-            var opus = _baseRepository.Get(id);
+            var opus = _opusRepository.Get(id);
             var result = new OpusForView(opus);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetOpuses()
         {
-            var opuses = _baseRepository.GetAll();
+            var opuses = _opusRepository.GetAll();
 
             var result = opuses.Select(opus => new OpusForView(opus)).ToList();
 

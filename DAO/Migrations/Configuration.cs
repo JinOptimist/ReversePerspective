@@ -5,11 +5,11 @@ namespace DAO.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DAO.ReversePerspectiveContext>
+    public sealed class Configuration : DbMigrationsConfiguration<DAO.ReversePerspectiveContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(DAO.ReversePerspectiveContext context)

@@ -13,11 +13,17 @@
         @RenderBody()
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/app")
-    
+    <hr/>
 
-    @RenderSection("scripts", required: false)
+    <footer class="footer">
+        Паша молодец. Немного футера
+    </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/app")
+
+
+        @RenderSection("scripts", required: false)
 </body>
 </html>

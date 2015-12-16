@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.UI.WebControls;
 using DAO.Model;
 using ReversePerspective.Models;
 
@@ -27,27 +28,35 @@ namespace ReversePerspective.Helper
             opus.Heroes = new List<Hero>();
 
             var index = 0;
+            StringBuilder sb = null;
             var lines = opusRaw.AllText.Split(new[] { Environment.NewLine, "\n" }, StringSplitOptions.None);
             foreach (var line in lines)
             {
-                string heroName;
-                string text;
-                Hero hero = null;
-
                 if (string.IsNullOrWhiteSpace(line))
                 {
                     continue;
                 }
 
                 var textPosition = line.IndexOf(":", StringComparison.Ordinal);
-                if (textPosition < 0)
+                if (textPosition < 0 || textPosition > 30)// This is just a text (description)
                 {
-                    text = line;
+                    if (sb == null)
+                    {
+                        sb = new StringBuilder();
+                    }
+
+                    sb.AppendLine(line);
                 }
-                else
+                else // This is a phrase
                 {
-                    heroName = line.Substring(0, textPosition);
-                    hero = opus.Heroes.SingleOrDefault(x => x.Name == heroName);
+                    if (sb != null)
+                    {
+                        AddPhrase(++index, sb.ToString(), scene, null);
+                        sb = null;
+                    }
+
+                    var heroName = line.Substring(0, textPosition);
+                    var hero = opus.Heroes.SingleOrDefault(x => x.Name == heroName);
                     if (hero == null)
                     {
                         hero = new Hero
@@ -58,20 +67,29 @@ namespace ReversePerspective.Helper
                         opus.Heroes.Add(hero);
                     }
 
-                    text = line.Substring(textPosition + 1);
+                    var text = line.Substring(textPosition + 1);
+                    AddPhrase(++index, text, scene, hero);
                 }
+            }
 
-                var phrase = new Phrase
-                {
-                    Position = ++index,
-                    Text = text,
-                    Scene = scene,
-                    Hero = hero
-                };
-                scene.Phrases.Add(phrase);
+            if (sb != null)
+            {
+                AddPhrase(++index, sb.ToString(), scene, null);
             }
 
             return opus;
+        }
+
+        private static void AddPhrase(int index, string text, Scene scene, Hero hero)
+        {
+            var phrase = new Phrase
+            {
+                Position = index,
+                Text = text,
+                Scene = scene,
+                Hero = hero
+            };
+            scene.Phrases.Add(phrase);
         }
 
         public static string GetTextFromOpus(Opus opus)

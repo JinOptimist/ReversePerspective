@@ -13,7 +13,7 @@
 
     <p>Name @Html.TextBoxFor(x => x.Name)</p>
 
-    <p>Text @Html.TextAreaFor(x => x.AllText)</p>
+    <p>Text @Html.TextAreaFor(x => x.AllText, new { @class = "opus-raw-container"})</p>
 
     <input type="submit" value="Save" />
 }
