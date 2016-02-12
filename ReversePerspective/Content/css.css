@@ -1,10 +1,12 @@
 ﻿body {
+    font-size: 16px;
 }
 
 
 .name {
     color: #800000;
     font-weight: bold;
+    cursor: pointer
 }
 
 .block {

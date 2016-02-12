@@ -13,6 +13,7 @@ angular.module("app", [])
         $scope.opuses = [];
         $scope.heroInfo = null;
         $scope.heroInfoBlockTop = 0;
+        $scope.fontSize = 14;
 
         // Init here!
         $http.get("GetOpuses")
@@ -22,6 +23,18 @@ angular.module("app", [])
                 console.log("upload complete");
             });
 
+        $scope.addFontSize = function () {
+            var newSize = $scope.fontSize + 4;
+            $scope.fontSize = newSize;
+            $("body").css("font-size", newSize + "px");
+        }
+
+        $scope.minusFontSize = function () {
+            var newSize = $scope.fontSize - 4;
+            $scope.fontSize = newSize;
+            $("body").css("font-size", newSize + "px");
+        }
+
         // ---------------------- Opus Region ----------------------
 
         $scope.selectOpus = function (opus) {
@@ -30,19 +43,19 @@ angular.module("app", [])
 
         $scope.deleteOpus = function (opusId) {
             var url = "Home/DeleteOpus?opusId=" + opusId;
-            $http.get(url);
-            //.then(function (res) {
-            //    if (res === true) {
-            //        var indexForDelete = -1;
-            //        for (var i = 0; i < $scope.opuses.length; i++) {
-            //            if ($scope.opuses[i].Id === opusId) {
-            //                indexForDelete = i;
-            //                break;;
-            //            }
-            //        }
-            //        $scope.opuses[i].
-            //    }
-            //});
+            $http.get(url)
+                .then(function(res) {
+                    if (res.data === true) {
+                        var indexForDelete = -1;
+                        for (var i = 0; i < $scope.opuses.length; i++) {
+                            if ($scope.opuses[i].Id === opusId) {
+                                indexForDelete = i;
+                                break;
+                            }
+                        }
+                        $scope.opuses[indexForDelete] = null;
+                    }
+                });
         }
 
         // ---------------------- HeroIngo Region ----------------------
@@ -99,8 +112,15 @@ angular.module("app", [])
             var url = "Home/DeleteHeroInfo?infoId=" + infoId;
             $http.get(url)
                 .then(function (res) {
-                    if (res.data) {
-                        alert("Удаление прошло успешно");
+                    if (res.data === true) {
+                        var indexForDelete = -1;
+                        for (var i = 0; i < $scope.heroInfo.length; i++) {
+                            if ($scope.heroInfo[i].Id === infoId) {
+                                indexForDelete = i;
+                                break;
+                            }
+                        }
+                        $scope.heroInfo[indexForDelete] = null;
                     }
                 });
         }

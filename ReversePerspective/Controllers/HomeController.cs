@@ -28,7 +28,12 @@ namespace ReversePerspective.Controllers
             _phraseRepository = new PhraseRepository(reversePerspectiveContext);
         }
 
-        public ActionResult Index()
+        public ActionResult Cutaway(long? pageId)
+        {
+            return View(pageId ?? 1);
+        }
+
+        public ActionResult ReadOpus()
         {
             return View();
         }
@@ -68,7 +73,7 @@ namespace ReversePerspective.Controllers
 
             _opusRepository.Save(opus);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ReadOpus");
         }
 
         [HttpPost]

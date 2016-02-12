@@ -8,22 +8,23 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    @Html.ActionLink("Home", "Index", "Home") *** @Html.ActionLink("Add Opus", "AddOpus", "Home")
+    <div id="page0">
+        @Html.ActionLink("Home", "ReadOpus", "Home")
+        *** @Html.ActionLink("Add Opus", "AddOpus", "Home")
+        *** @Html.ActionLink("Video Contact", "Cutaway", "Home")
+    </div>
     <div class="container body-content">
         @RenderBody()
     </div>
-
-    <hr/>
 
     <footer class="footer">
         Паша молодец. Немного футера
     </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/angular")
-        @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
 
-
-        @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

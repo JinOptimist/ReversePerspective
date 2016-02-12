@@ -17,6 +17,9 @@ namespace ReversePerspective
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css.css"));
+
+            bundles.Add(new StyleBundle("~/Content/cutaway").Include(
+                      "~/Content/cutaway.css"));
         }
     }
 }
