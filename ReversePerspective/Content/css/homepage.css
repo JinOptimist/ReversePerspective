@@ -149,14 +149,18 @@ button:hover {
 	opacity: 0.5;
 }
 .layer_2 {
-	width: 481px;
-	height: 425px;
+	/*width: 481px;*/
+	/*height: 425px;*/
+    width: 97%;
+    height: 97%;
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin-left: -240px;
-	margin-top: -210px;
-	background: url(../img/frame.png);
+
+	/*margin-left: -240px;
+	margin-top: -210px;*/
+	/*background: url(../img/frame.png);*/
+    background-color: red;
 	opacity: 0.3;
 }
 .layer_2:hover {
