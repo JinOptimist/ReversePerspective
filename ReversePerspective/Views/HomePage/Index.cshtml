@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<div class="layer_1" id="port">
+    <div class="layer_2 parallax-layer">
+    </div>
+    <!-- frame -->
+    <div class="angle_1"></div>
+    <div class="angle_2"></div>
+    <div class="angle_3"></div>
+    <div class="angle_4"></div>
+    <a href="@Url.Action("Index","HomePage")" class="logo">Обратная перспектива - Альманах кинематографической прозы</a>
+    <div class="paging">
+        <a href="#" class="active"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+    <div class="rec-menu">
+        меню
+        <a href="#" class="hamburger"></a>
+    </div> <!-- здесь еще будет дропдаун -->
+    <div class="content">
+        <h1>Альманах</h1>
+        <label class="discriptionTitle">~ Все выпуски от сотворения мира ~</label>
+        <button class="read-button">читать</button>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // Declare parallax on layers
+            $('.parallax-layer').parallax({
+                mouseport: jQuery("#port")
+            });
+            $('.read-button').mouseenter(function() {
+			    $( this ).text("смотреть");
+			})
+		    .mouseleave(function() {
+		    	$( this ).text("читать");
+		    });
+
+            $('.read-button').click(function () {
+                window.location = "@(Url.Action("ReadOpus","Home"))";
+            });
+        });
+</script>
+}

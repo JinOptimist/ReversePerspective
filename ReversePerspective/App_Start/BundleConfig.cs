@@ -20,6 +20,14 @@ namespace ReversePerspective
 
             bundles.Add(new StyleBundle("~/Content/cutaway").Include(
                       "~/Content/cutaway.css"));
+
+            /* ---------------------- From Maniac ---------------------- */
+            bundles.Add(new ScriptBundle("~/bundles/script/homepage").Include(
+                      "~/Scripts/jquery.parallax.js",
+                      "~/Scripts/main.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/css/homepage").Include(
+                      "~/Content/css/homepage.css"));
         }
     }
 }

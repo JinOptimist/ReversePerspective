@@ -12,7 +12,7 @@ namespace ReversePerspective
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
             routes.MapRoute(
                 name: "GetOpuses",
                 url: "GetOpuses",
@@ -22,7 +22,7 @@ namespace ReversePerspective
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Cutaway", id = UrlParameter.Optional }
+                defaults: new { controller = "HomePage", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
