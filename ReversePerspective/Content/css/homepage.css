@@ -24,6 +24,7 @@ html {
 	height: 100%;
 	position: relative;
 	min-width: 1000px;
+	overflow:hidden;
 }
 body {
 	height: 100%;
@@ -149,8 +150,8 @@ button:hover {
 	opacity: 0.5;
 }
 .layer_2 {
-	/*width: 481px;*/
-	/*height: 425px;*/
+	/*width: 481px;
+	height: 425px;*/
     width: 97%;
     height: 97%;
 	position: absolute;
@@ -158,9 +159,11 @@ button:hover {
 	top: 50%;
 
 	/*margin-left: -240px;
-	margin-top: -210px;*/
-	/*background: url(../img/frame.png);*/
-    background-color: red;
+	margin-top: -210px;
+    background-color: red; */
+	background: url(../img/frame.png);
+	background-repeat: no-repeat;
+    background-position: 588px 166px;
 	opacity: 0.3;
 }
 .layer_2:hover {
