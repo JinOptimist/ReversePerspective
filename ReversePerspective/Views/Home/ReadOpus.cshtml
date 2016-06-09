@@ -13,9 +13,9 @@
     </div>
     <div>
         <div ng-show="isWait">Ожидайте, идёт заргузка... <img src="@Url.Content("~/Content/img/wait.gif")"/></div>
-        
+
         <div ng-repeat="opus in opuses" ng-show="opus">
-            <a href="#" ng-click="selectOpus(opus)">{{ opus.Name }}</a><a ng-show="isAdmin" href="#" ng-click="deleteOpus(opus.Id)"><img src="@Url.Content("~/Content/img/del.jpg")" width="20" /></a>
+            <a href="#" ng-click="selectOpus(opus)">{{ ::opus.Name }}</a><a ng-show="isAdmin" href="#" ng-click="deleteOpus(opus.Id)"><img src="@Url.Content("~/Content/img/del.jpg")" width="20" /></a>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
         <h3>{{currentOpus.Name}}</h3>
         <div ng-repeat="scene in currentOpus.Scenes">
             <p class="block" id="phrase{{phrases.Id}}" ng-repeat="phrases in scene.Phrases">
-                <span ng-show="phrases.HeroName" class="name" ng-click="selectHeroInfo(phrases.HeroId, phrases.Id, phrases.HeroName)">{{ phrases.HeroName }}: </span><span>{{ phrases.Text }}</span>
+                <span ng-show="phrases.HeroName" class="name" ng-click="selectHeroInfo(phrases.HeroId, phrases.Id, phrases.HeroName)">{{ ::phrases.HeroName }}: </span><span>{{ ::phrases.Text }}</span>
             </p>
         </div>
     </div>
