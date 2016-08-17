@@ -24,6 +24,7 @@ namespace ReversePerspective
             /* ---------------------- From Maniac ---------------------- */
             bundles.Add(new ScriptBundle("~/bundles/script/homepage").Include(
                       "~/Scripts/jquery.parallax.js",
+                      "~/Scripts/homepageScroll.js",
                       "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/bundles/css/homepage").Include(

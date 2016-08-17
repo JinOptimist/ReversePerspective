@@ -147,7 +147,8 @@ $(document).ready(function() {
         currentMousePos.x = event.pageX;
         currentMousePos.y = event.pageY;
 
-        if(currentMousePos.x > $('.scroll-nav').offset().left &&
+        if ($('.scroll-nav').offset() &&
+            currentMousePos.x > $('.scroll-nav').offset().left &&
             currentMousePos.x < $('.scroll-nav').offset().left + $('.scroll-nav').width() &&
             currentMousePos.y > $('.scroll-nav').offset().top &&
             currentMousePos.y < $('.scroll-nav').offset().top + $('.scroll-nav').outerHeight()) {
@@ -215,7 +216,7 @@ $(document).ready(function() {
                 },100)
 
             }
-            
+
             filmData.refresh('.films-list li');
             filmData.checkItemPos(filmData.topItem, $('body').scrollTop()+200);
 

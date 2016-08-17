@@ -170,6 +170,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\jquery.parallax.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\homepageScroll.js" />
     <Content Include="Scripts\scroll.js" />
     <Content Include="Scripts\findHero.js" />
     <Content Include="Scripts\app\app.js" />

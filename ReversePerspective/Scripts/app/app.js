@@ -44,7 +44,7 @@ angular.module("app", [])
         $scope.deleteOpus = function (opusId) {
             var url = "Home/DeleteOpus?opusId=" + opusId;
             $http.get(url)
-                .then(function(res) {
+                .then(function (res) {
                     if (res.data === true) {
                         var indexForDelete = -1;
                         for (var i = 0; i < $scope.opuses.length; i++) {
@@ -84,7 +84,7 @@ angular.module("app", [])
         $scope.closeHeroInfo = function () {
             $scope.heroInfo = null;
         }
-        
+
         $scope.saveHeroInfo = function () {
             var req = {
                 method: "POST",
